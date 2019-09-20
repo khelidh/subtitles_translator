@@ -7,7 +7,6 @@ package com.subtitles.app.dao;
 
 import com.subtitles.app.beans.FileSrt;
 import com.subtitles.app.beans.TranslatedSubtitles;
-import com.subtitles.app.dao.interfaces.SubtitlesDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,12 +16,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.subtitles.app.dao.interfaces.TranslatedSubtitlesDao;
 
 /**
  *
  * @author MAMA
  */
-public class TranslatedSubtitlesDaoImpl implements SubtitlesDao{
+public class TranslatedSubtitlesDaoImpl implements TranslatedSubtitlesDao{
     
     private static final String REQUETE_INSERT_SUBTITLES = "INSERT INTO subtitles(id_fichier_srt_fk) VALUES(?);";
     private static final String REQUETE_UPDATE_SUBTITLES = "UPDATE subtitles SET subtitle_translated = ?, description_translation = ? WHERE id = ?";

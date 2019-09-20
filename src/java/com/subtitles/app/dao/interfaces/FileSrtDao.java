@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author MAMA
  */
-public interface FileDao {
+public interface FileSrtDao {
     Integer ajouter( FileSrt fileSrtDB );
     
     FileSrt findById(Integer fileId);

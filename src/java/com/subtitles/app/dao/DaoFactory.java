@@ -5,11 +5,11 @@
  */
 package com.subtitles.app.dao;
 
-import com.subtitles.app.dao.interfaces.FileDao;
-import com.subtitles.app.dao.interfaces.SubtitlesDao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import com.subtitles.app.dao.interfaces.TranslatedSubtitlesDao;
+import com.subtitles.app.dao.interfaces.FileSrtDao;
 
 public class DaoFactory {
     
@@ -51,11 +51,11 @@ public class DaoFactory {
     }
 
     // Récupération du FileDao
-    public FileDao getFileDao() {
+    public FileSrtDao getFileDao() {
         return new FileSrtDaoImpl(this);
     }
     // Récupération du SubtitlesDao
-    public SubtitlesDao getSubtitlesDao() {
+    public TranslatedSubtitlesDao getSubtitlesDao() {
         return new TranslatedSubtitlesDaoImpl(this);
     }
 }

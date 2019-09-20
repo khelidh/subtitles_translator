@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author MAMA
  */
-public interface SubtitlesDao {
+public interface TranslatedSubtitlesDao {
     Integer ajouter( TranslatedSubtitles subtitles );
     void enregistrer ( TranslatedSubtitles subtitles );
     void enregistrer ( Integer id, String translatedSubs, String descriptionSubs );

@@ -6,7 +6,6 @@
 package com.subtitles.app.dao;
 
 import com.subtitles.app.beans.FileSrt;
-import com.subtitles.app.dao.interfaces.FileDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +13,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import com.subtitles.app.dao.interfaces.FileSrtDao;
 
 /**
  *
  * @author MAMA
  */
-public class FileSrtDaoImpl implements FileDao{
+public class FileSrtDaoImpl implements FileSrtDao{
     
     private static final String REQUETE_INSERT_FILE_SRT = "INSERT INTO fichiers_srt(file_name, file_description, number_line, date_start, date_end, subtitle"
             + ") VALUES(?, ?, ?, ?, ?, ?);";

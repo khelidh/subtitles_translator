@@ -5,6 +5,8 @@
  */
 package com.subtitles.app.servlets;
 
+import com.subtitles.app.services.FileSrtService;
+import com.subtitles.app.services.TranslatedSubtitlesService;
 import java.io.IOException;
 import java.util.HashMap;
 import javax.servlet.ServletException;
@@ -21,10 +23,15 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "MainServlet", urlPatterns = {"/MainServlet"})
 public class MainServlet extends HttpServlet {
 
+    FileSrtService fileSrtService = new FileSrtService();
+    TranslatedSubtitlesService translatedSubtitlesService = new TranslatedSubtitlesService();
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        
         
     }
 

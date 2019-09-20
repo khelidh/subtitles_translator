@@ -6,7 +6,6 @@
 package com.subtitles.app.beans;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /*
  * Traduction d'un fichier.srt (liée via une clé étrangère de l'id du fichier en question) :
@@ -17,7 +16,6 @@ import java.util.Arrays;
  */
 public class TranslatedSubtitles {
     
-    private static final String DELIMITER_JOIN = "$$$";
     Integer id;
     Integer fileId;
     String subtitlesDescription;
@@ -53,23 +51,12 @@ public class TranslatedSubtitles {
         this.tranlateSubtitles = null;
     }
     
-    public static String compressedArrayList(ArrayList array) {
-        return String.join(DELIMITER_JOIN, array);
-    }
-    
     public String getTranlateSubtitlesDB(){
         return FileSrt.compressedArrayList(this.getTranlateSubtitles());
     }
     private void setTranlateSubtitlesDB(String tranlateSubtitlesString){
         this.setTranlateSubtitles(FileSrt.decompressedString(tranlateSubtitlesString));
     }
-
-    private static ArrayList<String> decompressedString(String array) {
-        return (ArrayList) Arrays.asList(array.split(DELIMITER_JOIN));
-    }
-    
-    
-
     
     /////////// Get & Set
     

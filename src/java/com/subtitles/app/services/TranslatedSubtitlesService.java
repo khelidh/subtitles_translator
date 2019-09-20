@@ -5,10 +5,21 @@
  */
 package com.subtitles.app.services;
 
+import com.subtitles.app.dao.DaoFactory;
+import com.subtitles.app.dao.TranslatedSubtitlesDaoImpl;
+
 /**
  *
  * @author MAMA
  */
 public class TranslatedSubtitlesService {
+    DaoFactory daoFactory = DaoFactory.getInstance();
+    TranslatedSubtitlesDaoImpl translatedSubtitlesDao = (TranslatedSubtitlesDaoImpl) daoFactory.getSubtitlesDao();
+    FileSrtService fileSrtService = new FileSrtService();
+    
+    
+    
+    
+    
     
 }
