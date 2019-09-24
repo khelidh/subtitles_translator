@@ -6,9 +6,14 @@
 package com.subtitles.app.services;
 
 import com.subtitles.app.beans.FileSrt;
+import com.subtitles.app.beans.TranslatedSubtitles;
 import com.subtitles.app.dao.DaoFactory;
 import com.subtitles.app.dao.FileSrtDaoImpl;
+import com.subtitles.app.dao.TranslatedSubtitlesDaoImpl;
+import com.subtitles.app.dao.interfaces.TranslatedSubtitlesDao;
+import java.util.HashMap;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -17,6 +22,7 @@ import java.util.List;
 public class FileSrtService {
     DaoFactory daoFactory = DaoFactory.getInstance();
     FileSrtDaoImpl fileSrtDao = (FileSrtDaoImpl) daoFactory.getFileDao();
+    TranslatedSubtitlesDaoImpl translatedSubtitlesDao = (TranslatedSubtitlesDaoImpl) daoFactory.getSubtitlesDao();
     TranslatedSubtitlesService translatedSubtitlesService = new TranslatedSubtitlesService();
     
     
@@ -30,6 +36,17 @@ public class FileSrtService {
     
     public String[] getFileTranslationAllData(Integer subsID){
         return fileSrtDao.getFileAndTranslation(subsID);
+    }
+
+    /**
+     * SetAttribute dans la request : les fichiers de sous-titres disponibles et les traductions en cours
+     * @param request 
+     */
+    public void setFilesAvailableAndSubtitlesInProgress(HttpServletRequest request) {
+        request.setAttribute("listeFiles", fileSrtDao.listerAllFiles());
+
+        HashMap<FileSrt, TranslatedSubtitles> map = (HashMap<FileSrt, TranslatedSubtitles>) translatedSubtitlesDao.listerAllWithFileName();
+        request.setAttribute("listeSubs", map);
     }
     
     

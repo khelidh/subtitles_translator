@@ -28,10 +28,10 @@ public class TranslatedSubtitlesDaoImpl implements TranslatedSubtitlesDao{
     private static final String REQUETE_UPDATE_SUBTITLES = "UPDATE subtitles SET subtitle_translated = ?, description_translation = ? WHERE id = ?";
     private static final String REQUETE_SELECT_ALL = "SELECT * FROM subtitles";
     private static final String REQUETE_SELECT_ALL_WITH_FILE_NAME = 
-            "SELECT s.id, s.description_translation, f.file_name, f.file_description "
-            + "FROM subtitles s "
-            + "JOIN fichiers_srt f "
-            + "ON f.id = s.id_fichier_srt_fk "
+            "SELECT s.id, s.translation_description, f.file_name, f.file_description "
+            + "FROM files_srt_translation s "
+            + "JOIN files_srt f "
+            + "ON f.id = s.id_file_srt "
             + "ORDER BY f.file_name ASC;";
     
     private DaoFactory daoFactory;
@@ -49,7 +49,7 @@ public class TranslatedSubtitlesDaoImpl implements TranslatedSubtitlesDao{
             preparedStatement.setInt(1, subtitles.getFileId());
             preparedStatement.executeUpdate();
             
-            // Récupéraation de l'id du record inséré. On retourne -1 si l'INSERT n'a pas abouti
+            // Récupération de l'id du record inséré. On retourne -1 si l'INSERT n'a pas abouti
             ResultSet tableKeys = preparedStatement.getGeneratedKeys();
             tableKeys.next();
             
@@ -106,7 +106,7 @@ public class TranslatedSubtitlesDaoImpl implements TranslatedSubtitlesDao{
 
             while (resultat.next()) {
                 Integer subsId = resultat.getInt("id");
-                String subsDescription = resultat.getString("description_translation");
+                String subsDescription = resultat.getString("translation_description");
                 
                 TranslatedSubtitles subs = new TranslatedSubtitles(subsId, subsDescription, "");
                 listSubtitles.add(subs);
@@ -132,7 +132,7 @@ public class TranslatedSubtitlesDaoImpl implements TranslatedSubtitlesDao{
 
             while (resultat.next()) {
                 Integer subsId = resultat.getInt("id");
-                String subsDescription = resultat.getString("description_translation");
+                String subsDescription = resultat.getString("translation_description");
                 String fileName = resultat.getString("file_name");
                 String fileDescription = resultat.getString("file_description");
                 

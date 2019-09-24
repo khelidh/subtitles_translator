@@ -1,5 +1,8 @@
-CREATE DATABASE IF NOT EXISTS OCRjee DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-use OCRjee;
+-- Initialisation de la database ocrjee avec 2 tables :
+--     - fichier_srt : permet de mettre en base toutes les informations du fichier.srt d'origine
+--     - files_srt_translation : met en base la traduction en cours
+CREATE DATABASE IF NOT EXISTS ocrjee DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+use ocrjee;
 
 DROP TABLE IF EXISTS subtitles;
 DROP TABLE IF EXISTS fichiers_srt;
@@ -14,7 +17,6 @@ CREATE TABLE  files_srt (
             original_subtitles MEDIUMTEXT NOT NULL,
             PRIMARY KEY ( id )) 
             ENGINE = INNODB  ;
-
 CREATE TABLE  files_srt_translation (
             id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
             id_file_srt INT NOT NULL,
@@ -25,4 +27,3 @@ CREATE TABLE  files_srt_translation (
             FOREIGN KEY (id_file_srt)
             REFERENCES fichiers_srt(id)
             ) ENGINE = INNODB ;
-

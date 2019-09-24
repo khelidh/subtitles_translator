@@ -30,8 +30,8 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
-        
+        fileSrtService.setFilesAvailableAndSubtitlesInProgress(request);
+        this.getServletContext().getRequestDispatcher("/jsp/main.jsp").forward(request, response);
         
     }
 
